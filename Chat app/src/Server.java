@@ -63,6 +63,7 @@ public class Server implements Runnable {
     public void shutdown() {
         try {
             done = true;
+            pool.shutdown();
             if (!server.isClosed()) {
                 server.close();
             }
@@ -95,15 +96,15 @@ public class Server implements Runnable {
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 out.println("Please enter a username: ");
                 username = in.readLine();
-                System.out.println(username + "connected");
-                broadcast(username + "joined the chat");
+                System.out.println(username + " connected");
+                broadcast(username + " joined the chat");
                 String message;
                 while ((message = in.readLine()) != null) {
                     if (message.startsWith("/nick ")) {
                         String[] messageSplit = message.split(" ", 2);
                         if (messageSplit.length == 2) {
-                            broadcast(username + "renamed themselves to " + messageSplit[1]);
-                            System.out.println(username + "renamed themselves to " + messageSplit[1]);
+                            broadcast(username + " renamed themselves to " + messageSplit[1]);
+                            System.out.println(username + " renamed themselves to " + messageSplit[1]);
                             username = messageSplit[1];
                             out.println("Successfully changed username to " + username);
                         } else {
