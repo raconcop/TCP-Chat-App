@@ -1,8 +1,9 @@
 # TCP-Chat-App
 A TCP chat app that runs off of Java
 
+Supports multiple different users
 
-
+# How to use
 To run this program locally:
 1. Clone the project onto you local machine
 2. Open and run the server class
